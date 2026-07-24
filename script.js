@@ -153,3 +153,46 @@ card.addEventListener("mouseleave",()=>{
 
 });
 // Hover END
+
+gsap.registerPlugin(ScrollTrigger);
+
+const thumbnails = gsap.utils.toArray(".Thumbnail");
+
+const tl = gsap.timeline({
+    scrollTrigger:{
+        trigger:".Thumbnails",
+        start:"top 75%"
+    }
+});
+
+tl.from(".Content2",{
+    y:40,
+    opacity:0,
+    duration:.8,
+    ease:"expo.out"
+})
+
+gsap.from(thumbnails, {
+    y:100,
+    opacity:0,
+    scale:.9,
+
+    duration:1,
+
+    ease:"expo.out",
+
+    stagger:{
+        each:0.15,
+        from:"start"
+    },
+
+    scrollTrigger:{
+        trigger:".Thumbnails",
+        start:"top 75%",
+        toggleActions:"play none none reverse"
+    }
+});
+
+gsap.config({
+    force3D: true
+});
